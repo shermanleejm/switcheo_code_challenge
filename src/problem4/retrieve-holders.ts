@@ -240,7 +240,9 @@ addresses.forEach((address) => {
       console.log('An error occured', err);
       return;
     }
-    let result = new BigNumber(res);
-    console.log(address, result.toNumber() / 10 ** 9);
+    let result = (new BigNumber(res).toNumber() / 10 ** 8)
+      .toString()
+      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+    console.log(address, result);
   });
 });
